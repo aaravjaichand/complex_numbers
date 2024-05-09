@@ -4,6 +4,9 @@ import math
 def rectPolar():
     A = int(input("Enter value for a in a + bi form: "))
     B = int(input("Enter value for b in a + bi form: "))
+    A1 = int(input("Enter a for another a + bi form for multiplication: "))
+    B1 = int(input("Enter b for another a + bi form for multiplication: "))
+
 
     global xAxisLen
     global yAxisLen
@@ -25,13 +28,13 @@ def rectPolar():
         plt.plot([0, 0], [-yAxisLen, yAxisLen], label = "Y Axis")
     
         
-        plt.annotate(f'({a}, {b})', (a, b), textcoords="offset points", xytext=(0,10), ha='center')
+        plt.annotate(f'({a}, {b})', (a, b))
 
         
 
 
         plt.legend()
-        plt.show()
+        
 
     def convertPolar(a, b):
         r = math.sqrt(a**2 + b**2)
@@ -47,10 +50,33 @@ def rectPolar():
 
         return  r ," CiS" , thetaDegrees
 
+    def multiply(A, B, A1, B1):
+        
+
+        global aForm
+        global bForm
+
+
+        aForm = A * A1 + (-1*(B*B1))
+        bForm = A*B1 + B * A1
+
+        return aForm, "+", bForm
+    
+
+
+
+
+
 
     print(*convertPolar(A, B))
+    print("Product:", *multiply(A, B, A1, B1), "i")
     print("See Graph in other window")
     plot(A, B)
+    plot(A1, B1)
+    plot(aForm, bForm)
+    
+    plt.show()
+    
 
     
 
