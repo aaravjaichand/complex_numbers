@@ -2,45 +2,38 @@ import matplotlib.pyplot as plt
 import math
 
 def rectPolar():
-    a = int(input("Enter value for a in a + bi form: "))
-    b = int(input("Enter value for b in a + bi form: "))
-
-    options = ["(1) Convert to Polar Coordinates in CiS form", "(2) Graph Simple Visualization"]
+    A = int(input("Enter value for a in a + bi form: "))
+    B = int(input("Enter value for b in a + bi form: "))
 
     global xAxisLen
     global yAxisLen
 
 
-    xAxisLen = 2*a + 1
-    yAxisLen = 2*b + 1
+    xAxisLen = 2*A + 1
+    yAxisLen = 2*B + 1
 
      
-    def plot():
-        x = [0, a]
-        y = [0, b]
-        plt.plot(x, y)
+    def plot(a, b):
+        x1 = [0, a]
+        y1 = [0, b]
+        plt.plot(x1, y1)
 
+        plt.xlim(-xAxisLen, xAxisLen)
+        plt.ylim(-yAxisLen, yAxisLen)
 
-
-        # orX = [-xAxisLen, xAxisLen]   
-        # orY = [0, 0]
-
-        # plt.plot(orX, orY)
+        plt.plot([-xAxisLen, xAxisLen], [0, 0], label = "X Axis")
+        plt.plot([0, 0], [-yAxisLen, yAxisLen], label = "Y Axis")
+    
         
-        # orX1 = [0, 0]
-        # orY1 = [-yAxisLen, yAxisLen]
+        plt.annotate(f'({a}, {b})', (a, b), textcoords="offset points", xytext=(0,10), ha='center')
 
-
-        # plt.plot(orX1, orY1)
-
-        plt.xlabel("x-axis")
-        plt.ylabel("y-axis")
+        
 
 
         plt.legend()
         plt.show()
 
-    def convert():
+    def convertPolar(a, b):
         r = math.sqrt(a**2 + b**2)
 
         def convertDegrees(n):
@@ -52,8 +45,13 @@ def rectPolar():
 
         thetaDegrees = convertDegrees(theta)
 
-        print(r, "CiS", thetaDegrees)
+        return  r ," CiS" , thetaDegrees
 
-    convert()    
+
+    print(*convertPolar(A, B))
+    print("See Graph in other window")
+    plot(A, B)
+
     
+
 rectPolar()
