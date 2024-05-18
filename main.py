@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import math
 
+print("This is my complex number python tool")
+
 def rectPolar():
     A = int(input("Enter value for a in a + bi form: "))
     B = int(input("Enter value for b in a + bi form: "))
